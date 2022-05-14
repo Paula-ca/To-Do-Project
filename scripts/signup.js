@@ -70,7 +70,7 @@ window.addEventListener('load', function () {
                     localStorage.setItem('jwt', JSON.stringify(data.jwt));
 
                     //redireccionamos a la página
-                    location.replace('To-Do-Project/mis-tareas.html');
+                    location.replace('mis-tareas.html');
                 }
             })
             
