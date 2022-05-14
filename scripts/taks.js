@@ -51,7 +51,7 @@ window.addEventListener("load", function () {
       .then((data) => {
         console.log("Nombre de usuario:");
         console.log(data.firstName);
-        nombreUsuario.innerText = data.firstName+""+data.lastName;
+        nombreUsuario.innerText = data.firstName+" "+data.lastName;
       })
       .catch((error) => console.log(error));
   }
