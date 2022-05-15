@@ -13,7 +13,7 @@ window.addEventListener("load", function () {
   /* -------------------------------------------------------------------------- */
   form.addEventListener("submit", function (event) {
     event.preventDefault();
-
+    mostrarSpinner();
     const payload = {
       firstName: nombre.value,
       lastName: apellido.value,
@@ -42,6 +42,8 @@ window.addEventListener("load", function () {
     ) {
       realizarRegister(s);
       form.reset();
+    }else{
+      ocultarSpinner();
     }
   }
 
@@ -58,6 +60,10 @@ window.addEventListener("load", function () {
         return response.json();
       })
       .then((data) => {
+        ocultarSpinner();
+        form.classList.remove("hidden")
+        const a = document.querySelector("a");
+        a.classList.remove("hidden");
         console.log("Promesa cumplida: objeto data: " + data.jwt);
         console.log(data);
         const span = document.querySelector(".campo-form");
@@ -70,11 +76,14 @@ window.addEventListener("load", function () {
           //redireccionamos a la página
           location.replace("mis-tareas.html");
         }
+        
       })
 
       .catch((err) => {
         console.log("Promesa rechazada:");
         console.log(err);
+        ocultarSpinner();
+        form.classList.remove("hidden")
       });
   }
 });

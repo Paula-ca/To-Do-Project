@@ -11,6 +11,8 @@ window.addEventListener("load", function () {
   formLogin.addEventListener("submit", (event) => {
     event.preventDefault();
 
+    mostrarSpinner();
+    
     const usuario = {
       email: inputEmail.value,
       password: inputPass.value,
@@ -30,9 +32,11 @@ window.addEventListener("load", function () {
       })
       .then((respuesta) => {
         realizarLogin(respuesta);
+        
       })
       .catch((error) => {
         console.log(`Ocurrió un error: ${error}`);
+        ocultarSpinner();
       });
   });
 
@@ -41,9 +45,14 @@ window.addEventListener("load", function () {
   /* -------------------------------------------------------------------------- */
   function realizarLogin(settings) {
     if (settings.jwt) {
+      ocultarSpinner();
       localStorage.setItem("jwt", JSON.stringify(settings.jwt));
       location.replace("mis-tareas.html");
     } else {
+      ocultarSpinner();
+      formLogin.classList.remove("hidden");
+      const a = document.querySelector("a");
+      a.classList.remove("hidden");
       const span = document.querySelector(".campo-login");
       span.innerHTML = `${settings}`;
       console.log(`Ocurrió un error: ${settings}`);

@@ -4,6 +4,7 @@ if (!localStorage.jwt) {
   location.replace("./index.html");
 }
 /* ------ comienzan las funcionalidades una vez que carga el documento ------ */
+ 
 window.addEventListener("load", function () {
   /* ---------------- variables globales y llamado a funciones ---------------- */
   const urlTareas = "https://ctd-todo-api.herokuapp.com/v1/tasks";
